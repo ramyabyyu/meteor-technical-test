@@ -3,15 +3,15 @@ const apiResponse = require("../../helpers/apiResponse");
 
 module.exports = async (req, res) => {
   try {
-    const { userId, bookId } = req.params;
+    const { bookId } = req.params;
 
     const dueDate = new Date();
 
     dueDate.setMonth(dueDate.getMonth() + 1);
 
     const newBorrowing = await Borrowing.create({
-      user_id: userId,
-      book_id: bookId,
+      user_id: req.user.id,
+      book_id: parseInt(bookId),
       dueDate,
     });
 

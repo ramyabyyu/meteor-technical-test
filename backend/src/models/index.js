@@ -8,6 +8,10 @@ const sequelize = new Sequelize(
   {
     host: dbConfig.HOST,
     dialect: "mysql",
+    dialectOptions: {
+      useUTC: false, // for reading from database
+    },
+    timezone: "+07:00", // for writing to database
     operatorsAliases: false,
 
     pool: {

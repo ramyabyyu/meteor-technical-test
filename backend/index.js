@@ -1,13 +1,10 @@
 const app = require("./src/server");
 const db = require("./src/models");
 require("colors");
-const RunSeeder = require("./src/seed");
 
 db.sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
-    RunSeeder();
-    console.log("Drop and recreate db success.".bgYellow);
     console.log("Mysql Connected.".bgYellow);
   })
   .catch((error) =>
