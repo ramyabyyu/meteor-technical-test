@@ -25,6 +25,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER(11),
       allowNull: false,
     },
+    ISBN: {
+      type: Sequelize.INTEGER(11),
+      allowNull: false,
+    },
     isActive: {
       type: Sequelize.BOOLEAN,
       defaultValue: true,
