@@ -5,7 +5,10 @@ module.exports = async (req, res) => {
   try {
     const { body } = req;
 
-    const newBook = await Book.create({ ...body });
+    const newBook = await Book.create({
+      ...body,
+      thumbnail: req.file.filename,
+    });
 
     if (newBook) {
       return apiResponse.Created(res, newBook);

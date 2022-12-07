@@ -4,6 +4,7 @@ const router = Router();
 // middlewares
 const verifyToken = require("../middlewares/verifyToken");
 const isAdmin = require("../middlewares/isAdmin");
+const upload = require("../middlewares/upload");
 
 // controllers
 const addOne = require("../controllers/book/addOne");
@@ -12,7 +13,7 @@ const getOne = require("../controllers/book/getOne");
 const editOne = require("../controllers/book/editOne");
 const deleteOne = require("../controllers/book/deleteOne");
 
-router.post("/", verifyToken, isAdmin, addOne);
+router.post("/", verifyToken, isAdmin, upload.single("thumbnail"), addOne);
 router.get("/", getAll);
 router.get("/:id", getOne);
 router.patch("/:id", verifyToken, isAdmin, editOne);
