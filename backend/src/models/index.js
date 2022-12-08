@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize");
-const dbConfig = require("../config/db");
+const Sequelize = require('sequelize');
+const dbConfig = require('../config/db');
 
 const sequelize = new Sequelize(
   dbConfig.NAME,
@@ -7,11 +7,11 @@ const sequelize = new Sequelize(
   dbConfig.PASSWORD,
   {
     host: dbConfig.HOST,
-    dialect: "mysql",
+    dialect: 'mysql',
     dialectOptions: {
       useUTC: false, // for reading from database
     },
-    timezone: "+07:00", // for writing to database
+    timezone: '+07:00', // for writing to database
     operatorsAliases: false,
 
     pool: {
@@ -29,40 +29,42 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Models
-db.users = require("./User")(sequelize, Sequelize);
-db.books = require("./Book")(sequelize, Sequelize);
-db.borrowings = require("./Borrowing")(sequelize, Sequelize);
-db.categories = require("./Category")(sequelize, Sequelize);
-db.roles = require("./Role")(sequelize, Sequelize);
+db.users = require('./User')(sequelize, Sequelize);
+db.books = require('./Book')(sequelize, Sequelize);
+db.borrowings = require('./Borrowing')(sequelize, Sequelize);
+db.categories = require('./Category')(sequelize, Sequelize);
+db.roles = require('./Role')(sequelize, Sequelize);
 
 // Relatioship
 
 // One to many books and categories
-db.categories.hasMany(db.books, { as: "books" });
+db.categories.hasMany(db.books, { as: 'books' });
 db.books.belongsTo(db.categories, {
-  foreignKey: "category_id",
-  as: "category",
+  foreignKey: 'category_id',
+  as: 'category',
 });
 
+console.log(db.users);
+
 // One to many borrowings and users
-db.users.hasMany(db.borrowings, { as: "borrowings" });
+db.users.hasMany(db.borrowings, { as: 'borrowings' });
 db.borrowings.belongsTo(db.users, {
-  foreignKey: "user_id",
-  as: "user",
+  foreignKey: 'user_id',
+  as: 'user',
 });
 
 // One to many borrowings and books
-db.books.hasMany(db.borrowings, { as: "borrowings" });
+db.books.hasMany(db.borrowings, { as: 'borrowings' });
 db.borrowings.belongsTo(db.books, {
-  foreignKey: "book_id",
-  as: "book",
+  foreignKey: 'book_id',
+  as: 'book',
 });
 
 // One to many users and roles
-db.roles.hasMany(db.users, { as: "users" });
+db.roles.hasMany(db.users, { as: 'users' });
 db.users.belongsTo(db.roles, {
-  foreignKey: "role_id",
-  as: "role",
+  foreignKey: 'role_id',
+  as: 'role',
 });
 
 module.exports = db;

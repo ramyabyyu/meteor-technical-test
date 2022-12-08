@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
+import MainRoutes from './routes/MainRoutes';
 
 const App = () => {
   return (
     <div>
-      <h3 className="text-xl text-fuchsia-600">Hello World</h3>
+      <MainRoutes />
     </div>
   );
 };

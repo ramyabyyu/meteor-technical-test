@@ -1,10 +1,11 @@
-const { users: User } = require("../../models");
-const hashedPassword = require("../../helpers/hashPassword");
-const apiResponse = require("../../helpers/apiResponse");
+const { users: User } = require('../../models');
+const hashedPassword = require('../../helpers/hashPassword');
+const apiResponse = require('../../helpers/apiResponse');
 
 module.exports = async (req, res) => {
   try {
     const { body } = req;
+
     const newUser = await User.create({
       fullName: body.fullName,
       email: body.email,
@@ -13,7 +14,7 @@ module.exports = async (req, res) => {
     });
 
     if (newUser) {
-      return apiResponse.NoContent(res);
+      return apiResponse.Ok(res, 'Register success!');
     }
   } catch (error) {
     return apiResponse.BadRequest(res, error);
