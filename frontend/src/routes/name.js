@@ -4,8 +4,7 @@ const Path = {
   Auth: '/auth',
 
   //   PRIVATE ROUTES
-  DashboardUser: '/dashboard',
-  DashboardAdmin: '/dashboard-admin',
+  Admin: '/dashboard',
 
   BookDetail: 'book/detail', //  next, add the id
 };

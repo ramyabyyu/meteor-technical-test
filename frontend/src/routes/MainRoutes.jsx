@@ -5,6 +5,7 @@ import Layout from '../widgets/Layout';
 const Auth = lazy(() => import('../pages/Auth'));
 const Home = lazy(() => import('../pages/Home'));
 const BookDetail = lazy(() => import('../pages/BookDetail'));
+const Admin = lazy(() => import('../pages/Admin'));
 
 const MainRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const MainRoutes = () => {
             </Layout>
           }
         />
+        <Route path={Path.Admin} element={<Admin />} />
       </Routes>
     </Suspense>
   );

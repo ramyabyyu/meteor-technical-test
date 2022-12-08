@@ -42,4 +42,15 @@ input[type='password']:not(:placeholder-shown) {
   .nav-links {
     @apply md:ml-8 ml-0 text-sm font-medium my-0 text-lg;
   }
+
+  /* Admin Dashboard */
+  .header-icon {
+    @apply w-6 h-6 cursor-pointer;
+  }
+  .nav-icon {
+    @apply w-6 h-6 cursor-pointer;
+  }
+  .invest-icon {
+    @apply w-6 h-6 stroke-gray-600;
+  }
 }
