@@ -17,10 +17,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(255),
       allowNull: false,
     },
-    isBorrowed: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-    },
     dueDate: {
       type: Sequelize.DATE,
       allowNull: false,

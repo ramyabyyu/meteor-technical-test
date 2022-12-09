@@ -1,20 +1,39 @@
 import React from 'react';
 import { FaAmbulance, FaStar } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import meteorLogo from '../images/meteorLogo.png';
+import API from '../config/api';
+import serverRoute from '../config/serverRoutes';
+import apiConfig from '../config/apiConfig';
 
 const BookDetail = () => {
+  const { id } = useParams();
+
+  const { data } = useQuery(['bookOneCache'], async () => {
+    try {
+      const response = await API.get(
+        serverRoute.BookOne + id,
+        apiConfig.withToken
+      );
+      return response.data.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  });
+
   return (
     <div className="px-10 pb-10 flex justify-center items-center flex-col">
       <div className="col-span-12">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Your knowledge book
+          Detail Information
         </h1>
       </div>
 
       <div className="w-1/2">
         <section aria-labelledby="book-heading">
           <h2 id="book-heading" className="sr-only">
-            Book Detail
+            {data?.title}
           </h2>
 
           <ul
@@ -33,15 +52,21 @@ const BookDetail = () => {
                 <div className="relative flex">
                   <div className="flex-1 pr-8">
                     <div className="flex justify-between">
-                      <h3 className="text-md">Book Name</h3>
+                      <h3 className="text-md">{data?.title}</h3>
                     </div>
                     <div className="mt-4 text-sm">
-                      <p className="text-gray-500">By Ramy Abyyu</p>
-                      <p className="border-gray-200 text-gray-500">300 pages</p>
+                      <p className="text-gray-500">By {data?.author}</p>
+                      <p className="border-gray-200 text-gray-500">
+                        {data?.pages} pages
+                      </p>
                     </div>
                     <div className="mt-4 flex w-full items-center text-sm font-medium">
-                      <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-gree-800">
-                        Available
+                      <span
+                        className={`inline-flex items-center rounded-full ${
+                          data?.isBorrowed ? 'bg-gray-300' : 'bg-green-300'
+                        } px-2.5 py-0.5 text-xs font-medium`}
+                      >
+                        {data?.isBorrowed ? 'Loaned' : 'Available'}
                       </span>
 
                       <FaStar className="ml-4 mr-2 h-6 w-6 text-yellow-300" />

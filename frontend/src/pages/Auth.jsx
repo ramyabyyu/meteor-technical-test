@@ -33,15 +33,6 @@ const SignIn = () => {
     });
   };
 
-  const testSweetAlert = () => {
-    MySwal.fire({
-      title: <p>SweetAlert already working!</p>,
-      showClass: {
-        popup: animate.pulse,
-      },
-    });
-  };
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Book = sequelize.define("books", {
+  const Book = sequelize.define('books', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -32,6 +32,10 @@ module.exports = (sequelize, Sequelize) => {
     isActive: {
       type: Sequelize.BOOLEAN,
       defaultValue: true,
+    },
+    isBorrowed: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
     },
     createdAt: {
       type: Sequelize.DATE,

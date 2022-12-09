@@ -7,6 +7,10 @@ const serverRoute = {
   BorrowingAll: '/borrowing/',
   BorrowingPending: '/borrowing/pending',
   BorrowingEditStatus: '/borrowing/',
+
+  // Book
+  BookAll: '/book/',
+  BookOne: '/book/',
 };
 
 export default serverRoute;

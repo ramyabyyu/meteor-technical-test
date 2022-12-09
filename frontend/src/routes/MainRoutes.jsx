@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import Path from './name';
 import Layout from '../widgets/Layout';
 const Auth = lazy(() => import('../pages/Auth'));
@@ -22,7 +22,7 @@ const MainRoutes = () => {
           }
         />
         <Route
-          path={Path.BookDetail}
+          path="/book/detail/:id"
           element={
             <Layout>
               <BookDetail />
