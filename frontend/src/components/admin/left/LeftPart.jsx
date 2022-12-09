@@ -1,8 +1,32 @@
-import React from 'react';
-import InvestmentItem from './InvestmentItem';
+import React, { useState } from 'react';
+import LoanApplication from './LoanApplication';
 import { investDB } from './utils/investmentDB';
+import API from '../../../config/api';
+import apiConfig from '../../../config/apiConfig';
+import serverRoute from '../../../config/serverRoutes';
+import { useQuery } from '@tanstack/react-query';
 
 const LeftPart = () => {
+  const [loanData, setLoanData] = useState([]);
+
+  const { data } = useQuery(['borrowingCache'], async () => {
+    try {
+      const response = await API.get(
+        serverRoute.BorrowingPending,
+        apiConfig.withToken
+      );
+
+      console.log(response.data);
+
+      if (response.status === 200) {
+        setLoanData(response.data.data);
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  });
+
   return (
     <div className=" col-span-2 min-h-[90vh] border-r border-gray-200 items-start justify-start flex flex-col w-full ">
       {/* top section*/}
@@ -31,11 +55,11 @@ const LeftPart = () => {
       {/* bottom section*/}
       <div className="w-full items-start justify-start flex flex-col px-12 py-6">
         <h1 className="font-bold text-xl xl:text-2xl pb-2 ">
-          Recent Investment
+          Loan Application
         </h1>
         <div className="w-full space-y-5 overflow-y-auto max-h-[350px] py-6 scrollbar-hide">
-          {investDB.map((item) => (
-            <InvestmentItem item={item} key={item.id} />
+          {loanData?.map((item) => (
+            <LoanApplication item={item} key={item.id} />
           ))}
         </div>
       </div>

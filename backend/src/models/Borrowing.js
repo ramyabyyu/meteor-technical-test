@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Borrowing = sequelize.define("borrowings", {
+  const Borrowing = sequelize.define('borrowings', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -7,7 +7,15 @@ module.exports = (sequelize, Sequelize) => {
     },
     status: {
       type: Sequelize.STRING,
-      defaultValue: "pending",
+      defaultValue: 'pending',
+    },
+    bookTitle: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+    },
+    userEmail: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
     },
     isBorrowed: {
       type: Sequelize.BOOLEAN,

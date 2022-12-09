@@ -1,5 +1,5 @@
-const { borrowings: Borrowing, users: User } = require("../../models");
-const apiResponse = require("../../helpers/apiResponse");
+const { borrowings: Borrowing, users: User } = require('../../models');
+const apiResponse = require('../../helpers/apiResponse');
 
 module.exports = async (req, res) => {
   try {
